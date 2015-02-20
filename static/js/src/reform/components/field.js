@@ -1,6 +1,7 @@
 var React = require('react');
 var templateManager = require('../template-manager.js');
 
+
 // Load default field templates
 var CharField = require('./widgets/templates/char_field.js');
 var TextField = require('./widgets/templates/text_field.js');
@@ -13,6 +14,7 @@ var DateTimeField = require('./widgets/templates/datetime_field.js');
 var DateField = require('./widgets/templates/date_field.js');
 var TimeField = require('./widgets/templates/time_field.js');
 var ChoiceField = require('./widgets/templates/choice_field.js');
+
 
 // Register default field templates
 templateManager.registerFieldTemplate('char', CharField);

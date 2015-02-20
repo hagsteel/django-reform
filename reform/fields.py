@@ -21,6 +21,7 @@ class Field(object):
             'label': self.label,
             'initial': self.initial,
             'help_text': self.help_text,
+            'required': self.required,
             'error_messages': self.error_messages,
             'validators': validators
         }
@@ -150,8 +151,10 @@ class ChoiceField(Field):
             except NoReverseMatch:
                 choice_url = self.choices
             data['choices'] = choice_url
-        else:
+        elif isinstance(self.choices, dict):
             data['choices'] = [{self.key_field: k, self.label_field:v} for (k, v) in self.choices.items()]
+        else:
+            data['choices'] = [{self.key_field: k, self.label_field:v} for (k, v) in self.choices]
         data['key_field'] = self.key_field
         data['label_field'] = self.label_field
         return data

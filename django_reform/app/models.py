@@ -18,4 +18,4 @@ class Foo(models.Model):
     # datetime = models.DateTimeField()
     # date = models.DateField()
     # time = models.TimeField()
-    # dec = models.DecimalField(max_digits=10, decimal_places=5)
+    dec = models.DecimalField(max_digits=10, decimal_places=5)

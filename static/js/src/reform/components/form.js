@@ -49,13 +49,18 @@ var ReForm = React.createClass({
     formData: function (form) {
         var data = {},
             fields = this.state.form.fields,
-            i, field, input;
+            i, field, input, value;
 
         for (i = 0; i < fields.length; i += 1) {
             field = fields[i];
             input = form.querySelector('[name="' + field.name + '"]')
-            if (input)
-                data[field.name] = input.value;
+            if (input) {
+                value = input.value;
+                if (input.type === "checkbox") {
+                    value = input.checked;
+                }
+                data[field.name] = value;
+            }
         }
 
         return data;
@@ -98,6 +103,7 @@ var ReForm = React.createClass({
 
         // Get form data
         var data = this.formData(form);
+        console.log(data);
 
         // Validate input
         var errors = this.validate(data);

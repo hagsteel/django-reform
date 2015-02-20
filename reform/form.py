@@ -46,10 +46,9 @@ class ReactForm(object):
                     fields[name] = field
 
         for name, field in self.__class__.__dict__.items():
-            if name in self.opts.exclude:
+            if name in self.opts.exclude or not isinstance(field, Field):
                 continue
-            if isinstance(field, Field):
-                fields[name] = field
+            fields[name] = field
 
         if self.opts.fields:
             for name in self.opts.fields:
