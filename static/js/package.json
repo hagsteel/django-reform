@@ -1,0 +1,13 @@
+{
+    "dependencies": {
+        "react": "",
+        "react-tools": "",
+        "reactify": "",
+        "lodash": "",
+        "object-assign": "",
+        "es5-shim": ""
+    },
+    "browserify": {
+        "transform": ["reactify"]
+    }
+}

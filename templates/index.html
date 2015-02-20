@@ -1,0 +1,21 @@
+{% load static reform %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h3>Hello world</h3>
+
+<div id="foo-form"></div>
+<hr>
+<div id="bar-form"></div>
+
+{% reform reforms %}
+
+<script type="text/javascript" src="{% static 'js/dist/vendor.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/dist/reform.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/dist/demo.js' %}"></script>
+</body>
+</html>

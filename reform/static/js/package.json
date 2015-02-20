@@ -1,0 +1,19 @@
+{
+    "name": "reform",
+    "version": "0.0.1",
+    "description": "Reform for Django",
+    "author": "Jonas Hagstedt",
+    "license": "MIT",
+    "main": "./src/reform.js",
+    "dependencies": {
+        "react": "",
+        "react-tools": "",
+        "reactify": "",
+        "lodash": "",
+        "object-assign": "",
+        "es5-shim": ""
+    },
+    "browserify": {
+        "transform": ["reactify"]
+    }
+}

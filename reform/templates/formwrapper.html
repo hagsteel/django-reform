@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    window.reforms = window.reforms || {};
+    {% for form in forms %}
+    (function() {
+        var form = {{ form.form_json|safe }};
+        window.reforms[form.name] = form;
+    }());
+    {% endfor %}
+</script>
