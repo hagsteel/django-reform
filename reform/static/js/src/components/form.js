@@ -89,7 +89,7 @@ var ReForm = React.createClass({
             }
         }
 
-        if (this.props.hasOwnProperty("instance")) {
+        if (this.props.hasOwnProperty("instance") && this.props.instance) {
             var id_field = this.state.form.id_field;
             data[id_field] = this.props.instance[id_field];
         }
@@ -102,7 +102,6 @@ var ReForm = React.createClass({
     },
 
     error: function (errors) {
-        console.log(errors);
         this.setState({errors: errors});
     },
 
