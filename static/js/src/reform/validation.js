@@ -1,6 +1,6 @@
 function validateMaxLength (value, args) {
     if (value.length > args.max_length)
-        return "can't be longer than " + args.max_length + " characters";
+        return "Can't be longer than " + args.max_length + " characters";
     return null;
 }
 
@@ -21,15 +21,26 @@ function validateUrl(value, args) {
 }
 
 
+function validateMinValue (value, args) {
+    if (value < args.min_value)
+        return "Needs to be at least " + args.min_value;
+    return null;
+}
+
+
 function validateMaxValue (value, args) {
-    return value <= args.max_value;
+    if (value > args.max_value)
+        return "Can't be more than " + args.max_value;
+    return null;
 }
 
 
 var validators = {
     max_length: validateMaxLength,
     email: validateEmail,
-    url: validateUrl
+    url: validateUrl,
+    min_value: validateMinValue,
+    max_value: validateMaxValue
 };
 
 

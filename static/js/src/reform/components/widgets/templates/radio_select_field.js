@@ -1,4 +1,5 @@
 var React = require('react');
+var ErrorList = require('./base_error_list');
 
 
 module.exports = React.createClass({
@@ -21,7 +22,7 @@ module.exports = React.createClass({
                     )
                 })}
                 <div>{this.props.field.help_text}</div>
-                <div>{this.props.errors}</div>
+                <ErrorList errors={this.props.errors} />
             </div>
         )
     }
