@@ -4,4 +4,5 @@ from reform.views import ReformMixin
 
 
 class FooView(ReformMixin, TemplateView):
-    reform_classes = [FooForm, BarForm]
+    # reform_classes = [FooForm, BarForm]
+    reform_classes = [BarForm]

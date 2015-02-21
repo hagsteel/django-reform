@@ -13,7 +13,8 @@ var DecimalField = require('./widgets/templates/decimal_field.js');
 var DateTimeField = require('./widgets/templates/datetime_field.js');
 var DateField = require('./widgets/templates/date_field.js');
 var TimeField = require('./widgets/templates/time_field.js');
-var ChoiceField = require('./widgets/templates/choice_field.js');
+var SelectField = require('./widgets/templates/select_field.js');
+var RadioSelectField = require('./widgets/templates/radio_select_field.js');
 
 
 // Register default field templates
@@ -27,4 +28,5 @@ templateManager.registerFieldTemplate('decimal', DecimalField);
 templateManager.registerFieldTemplate('date_time', DateTimeField);
 templateManager.registerFieldTemplate('date', DateField);
 templateManager.registerFieldTemplate('time', TimeField);
-templateManager.registerFieldTemplate('choice', ChoiceField);
+templateManager.registerFieldTemplate('select', SelectField);
+templateManager.registerFieldTemplate('radio_select', RadioSelectField);

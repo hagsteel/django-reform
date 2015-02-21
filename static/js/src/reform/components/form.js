@@ -49,11 +49,21 @@ var ReForm = React.createClass({
     formData: function (form) {
         var data = {},
             fields = this.state.form.fields,
-            i, field, input, value;
+            i, j, field, input, value;
 
         for (i = 0; i < fields.length; i += 1) {
             field = fields[i];
-            input = form.querySelector('[name="' + field.name + '"]')
+            inputs = form.querySelectorAll('[name="' + field.name + '"]')
+            if (inputs.length === 1) {
+                input = inputs[0]
+            } else {
+                for (j = 0; j < inputs.length; j += 1) {
+                    if (inputs[j].type === "radio" && inputs[j].checked) {
+                        input = inputs[j];
+                        break;
+                    }
+                }
+            }
             if (input) {
                 value = input.value;
                 if (input.type === "checkbox") {

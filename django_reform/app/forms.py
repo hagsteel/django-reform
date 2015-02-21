@@ -1,5 +1,5 @@
 from django_reform.app.serializers import FooSerializer
-from reform.fields import ChoiceField
+from reform import fields
 from reform.form import ReactForm
 
 
@@ -14,7 +14,6 @@ class FooForm(ReactForm):
 
 class BarForm(ReactForm):
     CHOICES = (
-        ('', 'select'),
         ('a', 'A'),
         ('b', 'B'),
     )
@@ -23,7 +22,8 @@ class BarForm(ReactForm):
     create_url = '/'
     update_url = '/'
 
-    name = ChoiceField(choices=CHOICES, label='Name', required=True)
+    name = fields.RadioListField(choices=CHOICES, label='Name', required=True)
+    dec = fields.DecimalField(min_value=10, max_value=20, decimal_places=3, label='fancy decimal field')
 
     class Meta:
         serializer_class = FooSerializer

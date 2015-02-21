@@ -78,9 +78,9 @@ class IntegerField(Field):
     def __init__(self, min_value=None, max_value=None, *args, **kwargs):
         super(IntegerField, self).__init__(*args, **kwargs)
         if min_value:
-            self.validators.append(MinValueValidator)
+            self.validators.append(MinValueValidator(min_value=min_value))
         if max_value:
-            self.validators.append(MaxValueValidator)
+            self.validators.append(MaxValueValidator(max_value=max_value))
 
 
 class DecimalField(Field):
@@ -90,9 +90,9 @@ class DecimalField(Field):
         super(DecimalField, self).__init__(*args, **kwargs)
         self.decimal_places = decimal_places
         if min_value:
-            self.validators.append(MinValueValidator)
+            self.validators.append(MinValueValidator(min_value=min_value))
         if max_value:
-            self.validators.append(MaxValueValidator)
+            self.validators.append(MaxValueValidator(max_value=max_value))
 
     def to_dict(self, **kwargs):
         data = super(DecimalField, self).to_dict(**kwargs)
@@ -135,7 +135,7 @@ class TimeField(TemporalField):
 
 
 class ChoiceField(Field):
-    field_type = 'choice'
+    field_type = 'select'
 
     def __init__(self, choices=None, key_field='key', label_field='label', *args, **kwargs):
         super(ChoiceField, self).__init__(*args, **kwargs)
@@ -158,3 +158,7 @@ class ChoiceField(Field):
         data['key_field'] = self.key_field
         data['label_field'] = self.label_field
         return data
+
+
+class RadioListField(ChoiceField):
+    field_type = 'radio_select'

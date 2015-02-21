@@ -27,6 +27,7 @@ class MaxLengthValidator(Validator):
 class MaxValueValidator(Validator):
 
     def __init__(self, max_value):
+        super(MaxValueValidator, self).__init__()
         self.name = 'max_value'
         self.data['max_value'] = max_value
 
@@ -34,6 +35,7 @@ class MaxValueValidator(Validator):
 class MinValueValidator(Validator):
 
     def __init__(self, min_value):
+        super(MinValueValidator, self).__init__()
         self.name = 'min_value'
         self.data['min_value'] = min_value
 
