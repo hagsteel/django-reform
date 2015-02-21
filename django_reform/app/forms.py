@@ -23,6 +23,7 @@ class BarForm(ReactForm):
     update_url = '/'
 
     name = fields.RadioListField(choices=CHOICES, label='Name', required=False)
+    # dec = fields.DecimalField(min_value=10, max_value=20, decimal_places=3, label='fancy decimal field', error_messages={'min_value': 'dont be silly'})
     dec = fields.DecimalField(min_value=10, max_value=20, decimal_places=3, label='fancy decimal field')
 
     class Meta:

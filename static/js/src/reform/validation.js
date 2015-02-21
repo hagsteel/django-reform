@@ -52,7 +52,11 @@ function validate (field, value) {
         validator = validators[validationArgs.name];
         error = validator(value, validationArgs);
         if (error) {
-            errorMessages.push(error)
+            if (field.error_messages && validationArgs.name in field.error_messages) {
+                errorMessages.push(field.error_messages[validationArgs.name]);
+            } else {
+                errorMessages.push(error);
+            }
         }
     }
 
