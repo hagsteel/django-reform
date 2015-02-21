@@ -4,7 +4,7 @@
     "description": "Reform for Django",
     "author": "Jonas Hagstedt",
     "license": "MIT",
-    "main": "./src/reform.js",
+    "main": "reform.js",
     "dependencies": {
         "react": "",
         "react-tools": "",

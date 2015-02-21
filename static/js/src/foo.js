@@ -1,11 +1,12 @@
 var React = require('react');
-var ReForm = require('./reform/reform').ReForm;
-var TemplateManager = require('./reform/reform').TemplateManager;
+var ReForm = require('reform').ReForm;
 
-var fooTemplate = require('./templates/foo.js');
-TemplateManager.registerFormTemplate("foo-form", fooTemplate);
+var TemplateManager = require('reform').TemplateManager;
 
+//var fooTemplate = require('./templates/foo.js');
+//TemplateManager.registerFormTemplate("foo-form", fooTemplate);
 
+//
 var Foo = React.createClass({
     submit: function () {
         console.log('submitted foo');
