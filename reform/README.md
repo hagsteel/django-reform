@@ -3,3 +3,8 @@ browserify -r react -r react-tools -r reactify -r lodash -r object-assign -r es5
 
 Build reform.js
 browserify -x react -x react-tools -x reactify -x lodash -x object-assign -x es5-shim ./src/reform.js -o ./dist/reform.js -d -s reform
+
+browserify -x react -x react-tools -x reactify -x lodash -x object-assign -x es5-shim -r reform -o ./dist/reform.js -d -s reform
+
+
+browserify -x react -x react-tools -x reactify -x lodash -x object-assign -x es5-shim ./src/reform.js -o ./dist/reform.js -d -s reform

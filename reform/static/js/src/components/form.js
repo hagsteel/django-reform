@@ -26,15 +26,27 @@ var ReForm = React.createClass({
         return {
             errors:{},
             form: formManager.getForm(this.props.form),
-            template: templateManager.getFormTemplate(this.props.form) || DefaultTemplate
+            template: templateManager.getFormTemplate(this.props.form) || DefaultTemplate,
+            fields: null
         }
     },
 
     componentWillMount: function () {
-        var fields = [];
-        var _this = this;
+        if (this.state.form === undefined) {
+            return;
+        }
+
+        var fields = [],
+            _this = this,
+            instance = null;
+
+        if (this.props.instance) {
+            instance = this.props.instance
+        }
+
         this.state.form.fields.map(function (field, i) {
-            var fieldTemplate = templateManager.getFieldTemplate(field.field_type);
+            field.initial = instance != null ? instance[field.name] : null;
+            var fieldTemplate = templateManager.getFieldTemplate(field.field_type)
             if (fieldTemplate)
                 fields.push({
                     field: field,
@@ -47,6 +59,10 @@ var ReForm = React.createClass({
     },
 
     formData: function (form) {
+        if (this.state.form === undefined) {
+            return;
+        }
+
         var data = {},
             fields = this.state.form.fields,
             i, j, field, input, value;
@@ -73,6 +89,11 @@ var ReForm = React.createClass({
             }
         }
 
+        if (this.props.hasOwnProperty("instance")) {
+            var id_field = this.state.form.id_field;
+            data[id_field] = this.props.instance[id_field];
+        }
+
         return data;
     },
 
@@ -81,10 +102,15 @@ var ReForm = React.createClass({
     },
 
     error: function (errors) {
+        console.log(errors);
         this.setState({errors: errors});
     },
 
     validate: function (data) {
+        if (this.state.form === undefined) {
+            return;
+        }
+
         var fields = this.state.form.fields,
             errors = null,
             messages,
@@ -113,7 +139,6 @@ var ReForm = React.createClass({
 
         // Get form data
         var data = this.formData(form);
-        console.log(data);
 
         // Validate input
         var errors = this.validate(data);
@@ -121,7 +146,17 @@ var ReForm = React.createClass({
         // Call parent onSubmit
         // if it's available
         if ('onsubmit' in this.props)
-            this.props.onsubmit();
+            this.props.onsubmit(data, this.formUrls());
+    },
+
+    formUrls: function () {
+        if (this.state.form === undefined) {
+            return null;
+        }
+        return {
+            create: this.state.form.create_url,
+            update: this.state.form.update_url
+        }
     },
 
     render: function () {

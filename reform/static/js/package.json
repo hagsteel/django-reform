@@ -1,19 +1,21 @@
 {
-    "name": "reform",
+    "name": "django-reform",
     "version": "0.0.1",
     "description": "Reform for Django",
     "author": "Jonas Hagstedt",
     "license": "MIT",
-    "main": "reform.js",
+    "main": "django-reform.js",
     "dependencies": {
         "react": "",
-        "react-tools": "",
         "reactify": "",
-        "lodash": "",
         "object-assign": "",
         "es5-shim": ""
     },
     "browserify": {
         "transform": ["reactify"]
+    },
+    "scripts": {
+        "build": "browserify -x react ./django-reform.js -o ./dist/django-reform.js -s DjangoReform",
+        "build-min": "npm run build && yuglify ./dist/django-reform.js"
     }
 }

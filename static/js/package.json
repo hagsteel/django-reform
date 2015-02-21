@@ -1,7 +1,8 @@
 {
     "dependencies": {
+        "react": "",
         "reactify": "",
-        "reform": ""
+        "django-reform": ""
     },
     "browserify": {
         "transform": ["reactify"]

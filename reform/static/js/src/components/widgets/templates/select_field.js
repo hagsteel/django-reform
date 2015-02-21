@@ -15,7 +15,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <label htmlFor={this.props.field.id_field}>{this.props.field.label}</label>
-                <select name={this.props.field.name} id={this.props.field.id_field} {...props}>
+                <select name={this.props.field.name} id={this.props.field.id_field} defaultValue={this.props.field.initial} {...props}>
                 {this.props.field.choices.map(function (choice, i) {
                     return <option key={"opt-" + i} value={choice[key_field]}>{choice[label_field]}</option>
                 })}
