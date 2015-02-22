@@ -1,2 +1,1 @@
-var reform = require('./src/reform');
-module.exports = reform;
+module.exports = require('./src/reform');

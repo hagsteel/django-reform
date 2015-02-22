@@ -13,7 +13,8 @@ module.exports = React.createClass({
         }
         var field = this.props.field;
         return (
-            <div>{field.label}
+            <div className="reform-field">
+                {field.label}
                 {field.choices.map(function (choice, i) {
                     return (
                         <label htmlFor={field.id_field + "_" + i} key={"label-" + i}>

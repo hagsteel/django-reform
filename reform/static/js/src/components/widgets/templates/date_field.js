@@ -6,7 +6,7 @@ var ErrorList = require('./base_error_list');
 module.exports = React.createClass({
     render: function () {
         return (
-            <div>
+            <div className="reform-field">
                 <label htmlFor={this.props.field.id_field}>{this.props.field.label}</label>
                 <Input type="date" field={this.props.field} />
                 <div>{this.props.field.help_text}</div>

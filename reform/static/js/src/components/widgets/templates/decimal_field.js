@@ -26,7 +26,7 @@ module.exports = React.createClass({
     render: function () {
         var step = this.decimalPlacesToSteps();
         return (
-            <div>
+            <div className="reform-field">
                 <label htmlFor={this.props.field.id_field}>{this.props.field.label}</label>
                 <Input type="number" step={step} field={this.props.field} />
                 <div>{this.props.field.help_text}</div>

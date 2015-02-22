@@ -8,13 +8,14 @@ var validation = require('../validation');
 var DefaultTemplate = React.createClass({
     render: function () {
         var _this = this;
+
         return (
             <div>
-                {this.props.children.map(function (f, i) {
+                {this.props.fields.map(function (f, i) {
                     var Template = templateManager.getFieldTemplate(f.field.field_type);
                     return <Template key={f.key} field={f.field} errors={_this.props.errors[f.field.name]} />
                 })}
-                <button type="submit">save</button>
+                {this.props.children}
             </div>
         )
     }
@@ -160,9 +161,12 @@ var ReForm = React.createClass({
 
     render: function () {
         var Template = this.state.template;
+
         return (
             <form onSubmit={this.onsubmit} className={this.props.className}>
-                <Template ref="form" errors={this.state.errors} children={this.state.fields}></Template>
+                <Template ref="form" errors={this.state.errors} fields={this.state.fields}>
+                {this.props.children}
+                </Template>
             </form>
         )
     }
