@@ -161,7 +161,7 @@ var ReForm = React.createClass({
     render: function () {
         var Template = this.state.template;
         return (
-            <form onSubmit={this.onsubmit}>
+            <form onSubmit={this.onsubmit} className={this.props.className}>
                 <Template ref="form" errors={this.state.errors} children={this.state.fields}></Template>
             </form>
         )

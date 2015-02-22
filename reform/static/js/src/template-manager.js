@@ -7,8 +7,6 @@ var templateManager = templateManager || { };
 
 
 templateManager.registerFormTemplate = function (name, template) {
-    if (name in forms)
-        return;
     forms[name] = template;
 };
 
@@ -18,8 +16,6 @@ templateManager.getFormTemplate = function (name) {
 
 
 templateManager.registerFieldTemplate = function (fieldType, template) {
-    if (fieldType in fields)
-        return;
     fields[fieldType] = template;
 };
 
@@ -30,8 +26,6 @@ templateManager.getFieldTemplate = function(fieldType) {
 
 
 templateManager.registerTemplate = function (name, template) {
-    if (name in templates)
-        return;
     templates[name] = template;
 };
 
