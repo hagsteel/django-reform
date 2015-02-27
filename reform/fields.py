@@ -152,9 +152,9 @@ class ChoiceField(Field):
                 choice_url = self.choices
             data['choices'] = choice_url
         elif isinstance(self.choices, dict):
-            data['choices'] = [{self.key_field: k, self.label_field:v} for (k, v) in self.choices.items()]
+            data['choices'] = [{self.key_field: k, self.label_field: v} for (k, v) in self.choices.items()]
         else:
-            data['choices'] = [{self.key_field: k, self.label_field:v} for (k, v) in self.choices]
+            data['choices'] = [{self.key_field: k, self.label_field: v} for (k, v) in self.choices]
         data['key_field'] = self.key_field
         data['label_field'] = self.label_field
         return data
@@ -162,3 +162,7 @@ class ChoiceField(Field):
 
 class RadioListField(ChoiceField):
     field_type = 'radio_select'
+
+
+class Button(Field):
+    field_type = 'button'
