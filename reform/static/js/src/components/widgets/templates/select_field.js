@@ -12,6 +12,10 @@ module.exports = React.createClass({
             props.required = 'required'
         }
 
+        if (this.props.onChange) {
+            props.onChange = this.props.onChange;
+        }
+
         return (
             <div className="reform-field">
                 <label htmlFor={this.props.field.id_field}>{this.props.field.label}</label>
