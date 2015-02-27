@@ -15,6 +15,7 @@ var DateField = require('./widgets/templates/date_field.js');
 var TimeField = require('./widgets/templates/time_field.js');
 var SelectField = require('./widgets/templates/select_field.js');
 var RadioSelectField = require('./widgets/templates/radio_select_field.js');
+var Button = require('./widgets/templates/button.js');
 
 
 // Register default field templates
@@ -30,3 +31,4 @@ templateManager.registerFieldTemplate('date', DateField);
 templateManager.registerFieldTemplate('time', TimeField);
 templateManager.registerFieldTemplate('select', SelectField);
 templateManager.registerFieldTemplate('radio_select', RadioSelectField);
+templateManager.registerFieldTemplate('button', Button);
