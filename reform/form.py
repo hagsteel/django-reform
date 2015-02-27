@@ -27,8 +27,8 @@ class ReactForm(object):
 
     def __init__(self):
         assert self.form_name is not None, 'A ReactForm requires a unique "name" per form'
-        assert self.create_url is not None or self.create_url_name is not None, 'Provide either a "create_url" or a "create_url_name" for the form'
-        assert self.update_url is not None or self.update_url_name is not None, 'Provide either a "update_url" or a "update_url_name" for the form'
+        # assert self.create_url is not None or self.create_url_name is not None, 'Provide either a "create_url" or a "create_url_name" for the form'
+        # assert self.update_url is not None or self.update_url_name is not None, 'Provide either a "update_url" or a "update_url_name" for the form'
 
         self.opts = ReactFormMeta(self.Meta)
         self.fields = OrderedDict()
