@@ -166,3 +166,20 @@ class RadioListField(ChoiceField):
 
 class Button(Field):
     field_type = 'button'
+
+
+fields = {
+    CharField.field_type: CharField,
+    TextField.field_type: TextField,
+    EmailField.field_type: EmailField,
+    URLField.field_type: URLField,
+    BooleanField.field_type: BooleanField,
+    IntegerField.field_type: IntegerField,
+    DecimalField.field_type: DecimalField,
+    DateTimeField.field_type: DateTimeField,
+    DateField.field_type: DateField,
+    TimeField.field_type: TimeField,
+    ChoiceField.field_type: ChoiceField,
+    RadioListField.field_type: RadioListField,
+    Button.field_type: Button,
+}
