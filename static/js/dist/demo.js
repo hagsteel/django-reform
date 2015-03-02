@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module 'djangoReform' from '/Users/jonas/Projects/Django/django_reform/static/js/src'")
