@@ -3,6 +3,7 @@ var templateManager = require('../template-manager.js');
 
 
 // Load default field templates
+var Input = require('./widgets/templates/base_text_input.js');
 var CharField = require('./widgets/templates/char_field.js');
 var TextField = require('./widgets/templates/text_field.js');
 var EmailField = require('./widgets/templates/email_field.js');
@@ -32,3 +33,21 @@ templateManager.registerFieldTemplate('time', TimeField);
 templateManager.registerFieldTemplate('select', SelectField);
 templateManager.registerFieldTemplate('radio_select', RadioSelectField);
 templateManager.registerFieldTemplate('button', Button);
+
+
+module.exports = {
+    Input: Input,
+    CharField: CharField,
+    TextField: TextField,
+    EmailField: EmailField,
+    URLField: URLField,
+    BooleanField: BooleanField,
+    IntegerField: IntegerField,
+    DecimalField: DecimalField,
+    DateTimeField: DateTimeField,
+    DateField: DateField,
+    TimeField: TimeField,
+    SelectField: SelectField,
+    RadioSelectField: RadioSelectField,
+    Button: Button
+};

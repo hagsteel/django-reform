@@ -3,6 +3,7 @@ var React = require('react');
 var Input = React.createClass({
     render: function () {
         var props = {};
+
         if (this.props.step) {
             props.step = this.props.step;
         }
@@ -10,9 +11,15 @@ var Input = React.createClass({
             props.required = "required";
         }
 
+        if (this.props.className) {
+            props.className = this.props.className;
+        }
+
+        var fieldName = this.props.field.prefix + "-" + this.props.field.name;
+
         return <input
             type={this.props.type}
-            name={this.props.field.name}
+            name={fieldName}
             id={this.props.field.id_field}
             defaultValue={this.props.field.initial}
             {...props}

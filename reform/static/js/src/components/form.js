@@ -1,7 +1,7 @@
 require('./field');
 var React = require('react');
 var formManager = require('../form-manager');
-var templateManager = require('../template-manager');
+var TemplateManager = require('../template-manager');
 var validation = require('../validation');
 
 
@@ -10,7 +10,7 @@ var ReForm = React.createClass({
         return {
             errors:{},
             form: formManager.getForm(this.props.form),
-            template: templateManager.getFormTemplate(this.props.form),
+            template: TemplateManager.getFormTemplate(this.props.form),
             fields: null
         }
     },
@@ -29,17 +29,25 @@ var ReForm = React.createClass({
         }
 
         this.state.form.fields.map(function (field, i) {
-            field.initial = instance != null ? instance[field.name] : null;
-            var fieldTemplate = templateManager.getFieldTemplate(field.field_type)
+            field.initial = instance != null ? instance[field.name] : field.initial;
+            field.prefix = _this.state.form.name;
+
+            var fieldTemplate = TemplateManager.getFieldTemplate(field.field_type, _this.props.fieldPrefix);
+
             if (fieldTemplate)
                 fields.push({
                     field: field,
                     key: "field-" + i,
-                    ref: field.name
+                    ref: field.name,
+                    templatePrefix: _this.props.fieldPrefix
                 });
         });
 
         this.setState({fields:fields});
+    },
+
+    getFieldName: function(name) {
+        return this.state.form.name + "-" + name;
     },
 
     formData: function (form) {
@@ -53,7 +61,7 @@ var ReForm = React.createClass({
 
         for (i = 0; i < fields.length; i += 1) {
             field = fields[i];
-            inputs = form.querySelectorAll('[name="' + field.name + '"]')
+            inputs = form.querySelectorAll('[name="' + this.getFieldName(field.name) + '"]')
             if (inputs.length === 1) {
                 input = inputs[0]
             } else {
@@ -144,6 +152,13 @@ var ReForm = React.createClass({
 
     render: function () {
         var Template = this.state.template;
+        if (this.props.formless) {
+            return (
+                <Template ref="form" errors={this.state.errors} fields={this.state.fields}>
+                {this.props.children}
+                </Template>
+            )
+        }
 
         return (
             <form onSubmit={this.onsubmit} className={this.props.className}>

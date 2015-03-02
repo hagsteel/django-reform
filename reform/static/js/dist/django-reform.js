@@ -43,7 +43,7 @@ templateManager.registerFieldTemplate('button', Button);
 require('./field');
 var React = require('react');
 var formManager = require('../form-manager');
-var templateManager = require('../template-manager');
+var TemplateManager = require('../template-manager');
 var validation = require('../validation');
 
 
@@ -52,7 +52,7 @@ var ReForm = React.createClass({displayName: "ReForm",
         return {
             errors:{},
             form: formManager.getForm(this.props.form),
-            template: templateManager.getFormTemplate(this.props.form),
+            template: TemplateManager.getFormTemplate(this.props.form),
             fields: null
         }
     },
@@ -71,13 +71,15 @@ var ReForm = React.createClass({displayName: "ReForm",
         }
 
         this.state.form.fields.map(function (field, i) {
-            field.initial = instance != null ? instance[field.name] : null;
-            var fieldTemplate = templateManager.getFieldTemplate(field.field_type)
+            field.initial = instance != null ? instance[field.name] : field.initial;
+
+            var fieldTemplate = TemplateManager.getFieldTemplate(field.field_type, _this.props.fieldPrefix);
             if (fieldTemplate)
                 fields.push({
                     field: field,
                     key: "field-" + i,
-                    ref: field.name
+                    ref: field.name,
+                    prefix: _this.props.fieldPrefix
                 });
         });
 
@@ -186,6 +188,13 @@ var ReForm = React.createClass({displayName: "ReForm",
 
     render: function () {
         var Template = this.state.template;
+        if (this.props.formless) {
+            return (
+                React.createElement(Template, {ref: "form", errors: this.state.errors, fields: this.state.fields}, 
+                this.props.children
+                )
+            )
+        }
 
         return (
             React.createElement("form", {onSubmit: this.onsubmit, className: this.props.className}, 
@@ -240,6 +249,10 @@ var Input = React.createClass({displayName: "Input",
         }
         if (this.props.field.required) {
             props.required = "required";
+        }
+
+        if (this.props.field.className) {
+            props.className = this.props.field.className;
         }
 
         return React.createElement("input", React.__spread({
@@ -608,6 +621,7 @@ module.exports = {
 },{"./components/form":3,"./components/widgets/templates/base_error_list":4,"./form-manager":19,"./template-manager":21}],21:[function(require,module,exports){
 "use strict";
 
+var React = require('react');
 var forms = {};
 var fields = {};
 var templates = {};
@@ -621,7 +635,7 @@ var DefaultFormTemplate = React.createClass({displayName: "DefaultFormTemplate",
         return (
             React.createElement("div", null, 
                 this.props.fields.map(function (f, i) {
-                    var Template = templateManager.getFieldTemplate(f.field.field_type);
+                    var Template = templateManager.getFieldTemplate(f.field.field_type, f.prefix);
                     return React.createElement(Template, {key: f.key, field: f.field, errors: _this.props.errors[f.field.name]})
                 }), 
                 this.props.children
@@ -645,13 +659,21 @@ templateManager.getFormTemplate = function (name) {
 };
 
 
-templateManager.registerFieldTemplate = function (fieldType, template) {
-    fields[fieldType] = template;
+templateManager.registerFieldTemplate = function (fieldType, template, prefix) {
+    var name = fieldType;
+    if (prefix) {
+        name = prefix + "-" + name;
+    }
+    fields[name] = template;
 };
 
 
-templateManager.getFieldTemplate = function(fieldType) {
-    return fields[fieldType];
+templateManager.getFieldTemplate = function(fieldType, prefix) {
+    var name = fieldType;
+    if (prefix) {
+        name = prefix + "-" + name;
+    }
+    return fields[name];
 };
 
 
@@ -668,7 +690,7 @@ templateManager.getTemplate = function (name) {
 module.exports = templateManager;
 
 
-},{}],22:[function(require,module,exports){
+},{"react":"react"}],22:[function(require,module,exports){
 function validateMaxLength (value, args) {
     if (value.length > args.max_length)
         return "Can't be longer than " + args.max_length + " characters";
