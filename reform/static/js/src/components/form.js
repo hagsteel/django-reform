@@ -5,29 +5,12 @@ var templateManager = require('../template-manager');
 var validation = require('../validation');
 
 
-var DefaultTemplate = React.createClass({
-    render: function () {
-        var _this = this;
-
-        return (
-            <div>
-                {this.props.fields.map(function (f, i) {
-                    var Template = templateManager.getFieldTemplate(f.field.field_type);
-                    return <Template key={f.key} field={f.field} errors={_this.props.errors[f.field.name]} />
-                })}
-                {this.props.children}
-            </div>
-        )
-    }
-});
-
-
 var ReForm = React.createClass({
     getInitialState: function () {
         return {
             errors:{},
             form: formManager.getForm(this.props.form),
-            template: templateManager.getFormTemplate(this.props.form) || DefaultTemplate,
+            template: templateManager.getFormTemplate(this.props.form),
             fields: null
         }
     },

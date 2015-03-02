@@ -47,29 +47,12 @@ var templateManager = require('../template-manager');
 var validation = require('../validation');
 
 
-var DefaultTemplate = React.createClass({displayName: "DefaultTemplate",
-    render: function () {
-        var _this = this;
-
-        return (
-            React.createElement("div", null, 
-                this.props.fields.map(function (f, i) {
-                    var Template = templateManager.getFieldTemplate(f.field.field_type);
-                    return React.createElement(Template, {key: f.key, field: f.field, errors: _this.props.errors[f.field.name]})
-                }), 
-                this.props.children
-            )
-        )
-    }
-});
-
-
 var ReForm = React.createClass({displayName: "ReForm",
     getInitialState: function () {
         return {
             errors:{},
             form: formManager.getForm(this.props.form),
-            template: templateManager.getFormTemplate(this.props.form) || DefaultTemplate,
+            template: templateManager.getFormTemplate(this.props.form),
             fields: null
         }
     },
@@ -631,12 +614,34 @@ var templates = {};
 var templateManager = templateManager || { };
 
 
+var DefaultFormTemplate = React.createClass({displayName: "DefaultFormTemplate",
+    render: function () {
+        var _this = this;
+
+        return (
+            React.createElement("div", null, 
+                this.props.fields.map(function (f, i) {
+                    var Template = templateManager.getFieldTemplate(f.field.field_type);
+                    return React.createElement(Template, {key: f.key, field: f.field, errors: _this.props.errors[f.field.name]})
+                }), 
+                this.props.children
+            )
+        )
+    }
+});
+
+
 templateManager.registerFormTemplate = function (name, template) {
     forms[name] = template;
 };
 
+
 templateManager.getFormTemplate = function (name) {
-    return forms[name];
+    var template = forms[name];
+    if (template === undefined) {
+        return DefaultFormTemplate
+    }
+    return template
 };
 
 
