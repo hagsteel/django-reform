@@ -1,3 +1,6 @@
+from django.http import HttpResponseRedirect
+
+
 class ReformMixin(object):
     reform_classes = None
     form_context_name = 'reforms'
@@ -49,4 +52,6 @@ class ReformMixin(object):
 
     def post(self, request, *args, **kwargs):
         self.load_forms_data(request)
-        return super(ReformMixin, self).post(request, *args, **kwargs)
+        if hasattr(self, 'post'):
+            return super(ReformMixin, self).post(request, *args, **kwargs)
+        return HttpResponseRedirect(self.get_success_url())
