@@ -49,5 +49,6 @@ module.exports = {
     TimeField: TimeField,
     SelectField: SelectField,
     RadioSelectField: RadioSelectField,
-    Button: Button
+    Button: Button,
+    mixins: require('./widgets/mixins')
 };

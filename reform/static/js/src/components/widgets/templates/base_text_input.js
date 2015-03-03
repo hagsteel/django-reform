@@ -1,6 +1,9 @@
 var React = require('react');
+var InputMixin = require('../mixins').InputMixin;
 
 var Input = React.createClass({
+    mixins: [InputMixin],
+
     render: function () {
         var props = {};
 

@@ -1,9 +1,12 @@
 var React = require('react');
 var Input = require('./base_text_input');
 var ErrorList = require('./base_error_list');
+var InputMixin = require('../mixins').InputMixin;
 
 
 module.exports = React.createClass({
+    mixins: [InputMixin],
+
     render: function () {
         return (
             <div className="reform-field">
