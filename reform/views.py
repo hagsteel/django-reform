@@ -55,3 +55,6 @@ class ReformMixin(object):
         if hasattr(self, 'post'):
             return super(ReformMixin, self).post(request, *args, **kwargs)
         return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        raise NotImplementedError()
