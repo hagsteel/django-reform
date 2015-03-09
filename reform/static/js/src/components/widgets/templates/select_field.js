@@ -19,6 +19,10 @@ module.exports = React.createClass({
             props.onChange = this.props.onChange;
         }
 
+        if (this.props.multi) {
+            props.multiple = 'multiple;
+        }
+
         return (
             <div className="reform-field">
                 <label htmlFor={this.props.field.id_field}>{this.props.field.label}</label>

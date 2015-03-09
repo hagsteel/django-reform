@@ -13,6 +13,8 @@ class Field(object):
         self.help_text = help_text
         self.error_messages = error_messages
         self.validators = []
+        self.kwargs = kwargs
+
 
     def to_dict(self, **kwargs):
         validators = [validator.to_dict() for validator in self.validators]
@@ -26,6 +28,7 @@ class Field(object):
             'validators': validators
         }
 
+        data.update(self.kwargs)
         data.update(kwargs)
         return data
 
@@ -151,10 +154,15 @@ class ChoiceField(Field):
             except NoReverseMatch:
                 choice_url = self.choices
             data['choices'] = choice_url
-        elif isinstance(self.choices, dict):
-            data['choices'] = [{self.key_field: k, self.label_field: v} for (k, v) in self.choices.items()]
         else:
-            data['choices'] = [{self.key_field: k, self.label_field: v} for (k, v) in self.choices]
+            data['choices'] = self.choices
+            # for choice in self.choices:
+            #     data['choices'].push()
+            #     import ipdb;ipdb.set_trace()
+        # elif isinstance(self.choices, dict):
+        #     data['choices'] = [{self.key_field: k, self.label_field: v} for (k, v) in self.choices.items()]
+        # else:
+        #     data['choices'] = [{self.key_field: k, self.label_field: v} for (k, v) in self.choices]
         data['key_field'] = self.key_field
         data['label_field'] = self.label_field
         return data
