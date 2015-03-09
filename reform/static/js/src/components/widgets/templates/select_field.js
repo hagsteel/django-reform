@@ -20,7 +20,7 @@ module.exports = React.createClass({
         }
 
         if (this.props.multi) {
-            props.multiple = 'multiple;
+            props.multiple = 'multiple';
         }
 
         return (

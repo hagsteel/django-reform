@@ -28,7 +28,10 @@ class ReformMixin(object):
             data = {}
             for name, field in form.fields.items():
                 data_name = '{}-{}'.format(form.form_name, name)
-                data[name] = request.POST.get(data_name)
+                if field.multi_value:
+                    data[name] = request.POST.getlist(data_name)
+                else:
+                    data[name] = request.POST.get(data_name)
             self.data[form.form_name] = data
 
         is_valid = True

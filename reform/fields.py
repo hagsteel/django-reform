@@ -32,6 +32,10 @@ class Field(object):
         data.update(kwargs)
         return data
 
+    @property
+    def multi_value(self):
+        return self.kwargs.get('multi') is True
+
     def __str__(self):
         return self.field_type
 
