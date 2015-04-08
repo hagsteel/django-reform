@@ -4,7 +4,7 @@
     "description": "Reform for Django",
     "author": "Jonas Hagstedt",
     "license": "MIT",
-    "main": "django-reform.js",
+    "main": "index.js",
     "dependencies": {
         "react": "",
         "reactify": "",
@@ -17,6 +17,6 @@
     "scripts": {
         "build": "browserify -x react ./django-reform.js -o ./dist/django-reform.js -s DjangoReform",
         "build-min": "npm run build && yuglify ./dist/django-reform.js",
-        "watch": "watchify -x react ./django-reform.js -o ./dist/django-reform.js -s DjangoReform -v"
+        "watch": "watchify -x react ./index.js -o ./dist/django-reform.js -v -d"
     }
 }
