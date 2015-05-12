@@ -81,3 +81,10 @@ class ReactForm(object):
 
     def is_valid(self):
         return True # Implement this
+
+    def values(self, post_data):
+        data = {}
+        for name, field in self.fields.items():
+            key = '{}-{}'.format(self.form_name, name)
+            data[name] = field.get_value(post_data, key)
+        return data

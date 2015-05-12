@@ -25,13 +25,7 @@ class ReformMixin(object):
     def load_forms_data(self, request):
         forms = self.get_forms()
         for form in forms:
-            data = {}
-            for name, field in form.fields.items():
-                data_name = '{}-{}'.format(form.form_name, name)
-                if field.multi_value:
-                    data[name] = request.POST.getlist(data_name)
-                else:
-                    data[name] = request.POST.get(data_name)
+            data = form.values(request.POST)
             self.data[form.form_name] = data
 
         is_valid = True

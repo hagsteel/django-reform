@@ -32,6 +32,12 @@ class Field(object):
         data.update(kwargs)
         return data
 
+    def get_value(self, post_data, name):
+        if self.multi_value:
+            return post_data.getlist(name)
+        else:
+            return post_data.get(name)
+
     @property
     def multi_value(self):
         return self.kwargs.get('multi') is True
