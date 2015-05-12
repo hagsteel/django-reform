@@ -16,6 +16,7 @@ var DateField = require('./widgets/templates/date_field.js');
 var TimeField = require('./widgets/templates/time_field.js');
 var SelectField = require('./widgets/templates/select_field.js');
 var RadioSelectField = require('./widgets/templates/radio_select_field.js');
+var CheckboxField = require('./widgets/templates/checkbox_field.js');
 var Button = require('./widgets/templates/button.js');
 
 
@@ -32,6 +33,7 @@ templateManager.registerFieldTemplate('date', DateField);
 templateManager.registerFieldTemplate('time', TimeField);
 templateManager.registerFieldTemplate('select', SelectField);
 templateManager.registerFieldTemplate('radio_select', RadioSelectField);
+templateManager.registerFieldTemplate('checkbox', CheckboxField);
 templateManager.registerFieldTemplate('button', Button);
 
 
@@ -49,6 +51,7 @@ module.exports = {
     TimeField: TimeField,
     SelectField: SelectField,
     RadioSelectField: RadioSelectField,
+    CheckboxField: CheckboxField,
     Button: Button,
     mixins: require('./widgets/mixins')
 };
